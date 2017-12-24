@@ -13,4 +13,11 @@ class LoaiTinController extends Controller
     	$loaitin = LoaiTin::all();
     	return view('admin.loaitin.danhsach', ['loaitin' => $loaitin]);
     }
+
+    public function Delete($id)
+    {
+    	$loaitin = LoaiTin::find($id);
+    	$loaitin->delete();
+    	return redirect('admin/loaitin/danhsach')->with('thongbao', 'Xóa Thành Công');	// đẩy msg ra ngoài
+    }
 }
