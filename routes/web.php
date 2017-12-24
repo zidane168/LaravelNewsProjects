@@ -60,10 +60,8 @@ Route::group(['prefix'=>'admin'], function(){
 		// admin/theloai/them
 		Route::get('them', 'TheLoaiController@Add');
 
-
 		Route::post('them', 'TheLoaiController@AddPost');
 
-		// admin/theloai/xoa/{1}
 		Route::get('xoa/{id}', 'TheLoaiController@Delete');
 	});
 
@@ -74,15 +72,10 @@ Route::group(['prefix'=>'admin'], function(){
 		Route::get('danhsach', 'LoaiTinController@Get');
 
 		// admin/loaitin/sua
-	/*	Route::get('sua/{id}', 'LoaiTinController@Update');
-		Route::post('sua/{id}', 'LoaiTinController@UpdatePost');*/
+		Route::get('sua', 'LoaiTinController@Update');
 
 		// admin/loaitin/them
-	/*	Route::get('them', 'LoaiTinController@Add');
-		Route::post('them', 'LoaiTinController@AddPost');
-*/
-	//	
-		Route::get('xoa/{id}','LoaiTinController@Delete');
+		Route::get('them', 'LoaiTinController@Add');
 	});
 
 	Route::group(['prefix'=>'tintuc'], function(){

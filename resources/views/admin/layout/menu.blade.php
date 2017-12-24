@@ -28,13 +28,13 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-cube fa-fw"></i> Loại Tin <span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-cube fa-fw"></i> Product<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="admin/loaitin/danhsach">Danh Sách</a>
+                        <a href="#">List Product</a>
                     </li>
                     <li>
-                        <a href="admin/loaitin/them">Thêm</a>
+                        <a href="#">Add Product</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
