@@ -95,6 +95,7 @@ Route::group(['prefix'=>'admin'], function(){
 
 		// admin/tintuc/them
 		Route::get('them', 'TinTucController@Add');
+		Route::post('them', 'TinTucController@AddPost');
 	});
 
 
