@@ -72,7 +72,7 @@ Route::group(['prefix'=>'admin'], function(){
 		Route::get('danhsach', 'LoaiTinController@Get');
 
 		// admin/loaitin/sua
-/*
+
 		Route::get('sua/{id}', 'LoaiTinController@Update');
 		Route::post('sua/{id}', 'LoaiTinController@UpdatePost');
 
@@ -80,7 +80,7 @@ Route::group(['prefix'=>'admin'], function(){
 		Route::get('them', 'LoaiTinController@Add');
 		Route::post('them', 'LoaiTinController@AddPost');
 
-*/
+
 		Route::get('xoa/{id}','LoaiTinController@Delete');
 	
 	});
