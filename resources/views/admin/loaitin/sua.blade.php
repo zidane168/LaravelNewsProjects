@@ -38,7 +38,14 @@
                         <select class="form-control" >
                             
                             @foreach ($theloai as $tl)    
-                                <option value="{{$tl->id}}"> {{$tl->Ten}} </option>                            
+
+                                <option 
+
+                                @if($loaitin->idTheLoai == $tl->id)    
+                                    {{"SELECTED"}}
+                                @endif
+
+                                value="{{$tl->id}}"> {{$tl->Ten}} </option>                            
                             @endforeach
                         </select>
                     </div>
