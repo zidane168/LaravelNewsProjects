@@ -98,4 +98,10 @@ Route::group(['prefix'=>'admin'], function(){
 	});
 
 
+	// Ajax
+	Route::group(['prefix' => 'ajax'], function(){
+
+		// http://localhost:8888/News/public/admin/ajax/loaitin/3
+		Route::get('loaitin/{idTheLoai}', 'AjaxController@GetLoaiTin');
+	});
 });

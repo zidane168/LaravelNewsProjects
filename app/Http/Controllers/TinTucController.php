@@ -17,4 +17,11 @@ class TinTucController extends Controller
     	$tintuc = TinTuc::orderby('id', "DESC")->get();	// dấu "" mới đúng cho DESC
     	return view('admin/tintuc/danhsach', ['tintuc' => $tintuc]);
     }
+
+    public function Add()
+    {
+    	$loaitin = LoaiTin::all();
+    	$theloai = TheLoai::all();
+    	return view('admin/tintuc/them', ['loaitin' => $loaitin, 'theloai' => $theloai]);
+    }
 }
