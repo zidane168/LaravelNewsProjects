@@ -13,7 +13,15 @@
                 </h1>
             </div>
 
-                    @if (count($errors) > 0) 
+                 
+
+                               
+            <!-- /.col-lg-12 -->
+            <div class="col-lg-7" style="padding-bottom:120px">
+
+
+
+                 <!--   @if (count($errors) > 0) 
                         <div class="alert alert-danger">
                             @foreach ($errors->all as $err)
                                 {{$err}} <br>
@@ -26,16 +34,30 @@
                             {{session('thongbao')}}
                         </div>
                    @endif
+               -->
 
-                               
-            <!-- /.col-lg-12 -->
-            <div class="col-lg-7" style="padding-bottom:120px">
+                   @if (count($errors) > 0) 
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $err)
+                                {{$err}} <br>
+                            @endforeach
+                        </div>
+                   @endif
+
+                   @if (session('thongbao'))
+                        <div class="alert alert-success">
+                            {{session('thongbao')}}
+                        </div>
+                   @endif
+
                  <form action="admin/loaitin/sua/{{$loaitin->id}}" method="POST">
 
                     <input type="hidden" name="_token" value="{{csrf_token()}}" />
-                    <div class="form-group" name="cmbTheLoai">
+                    
+
+                    <div class="form-group" >
                         <label>Thể Loại</label>
-                        <select class="form-control" >
+                        <select class="form-control" name="cmbTheLoai" >
                             
                             @foreach ($theloai as $tl)    
 
@@ -51,7 +73,7 @@
                     </div>
                     <div class="form-group">			         
                        <label>Tên</label>
-                        <input class="form-control" name="txtName" placeholder="{{$loaitin->Ten}}" value="{{$loaitin->Ten}}"/>
+                        <input class="form-control" name="txtTen" placeholder="{{$loaitin->Ten}}" value="{{$loaitin->Ten}}"/>
                     </div>
 
 

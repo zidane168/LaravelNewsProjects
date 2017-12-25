@@ -48,7 +48,7 @@ class TheLoaiController extends Controller
         $theloai->TenKhongDau = changeTitle($request->Ten);
         $theloai->save();
 
-        return redirect('admin/theloai/sua/'.$id)->with('thong bao', 'Sửa Thành Công');
+        return redirect('admin/theloai/sua/'.$id)->with('thongbao', 'Sửa Thành Công');
 
     }
 

@@ -60,12 +60,12 @@ class LoaiTinController extends Controller
     }
 
 
-    public function UpdatePost(Request $request)
+    public function UpdatePost(Request $request, $id)
     {
 		$this->validate($request,
 			[	
-				'txtName' => 'required|min:1|max:100',
-				'cmbTheLoai' => 'required',
+				'txtTen' => 'required|min:1|max:100',
+				'cmbTheLoai' => 'required'
 			], 
 			[
 				'txtTen.required' =>'Bạn chưa nhập tên Loại Tin',				
@@ -76,18 +76,19 @@ class LoaiTinController extends Controller
 			]
 		);
 
+	
 
-
-		$loaitin = LoaiTin::find($request->id);
-		$loaitin->Ten = $request->txtName;
-		$loaitin->TenKhongDau = changeTitle($request->txtName); // dùng thư viện bên ngoài
+		$loaitin = LoaiTin::find($id);
+		$loaitin->Ten = $request->txtTen;
+		$loaitin->TenKhongDau = changeTitle($request->txtTen); // dùng thư viện bên ngoài
 		$loaitin->idTheLoai = $request->cmbTheLoai;
-
 		$loaitin->save();
 
-		return redirect('admin/loaitin/sua' . $request->id)->with('thongbao', 'Sửa Thành Công!');
+		return redirect('admin/loaitin/sua/' . $id)->with('thongbao', 'Sửa Thành Công!');	
 
-		
+		// return redirect('admin/loaitin/sua')->with('thongbao', 'Sửa Thành Công!');	
+
+        	
     }
 
 
