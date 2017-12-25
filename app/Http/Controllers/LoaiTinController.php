@@ -58,4 +58,44 @@ class LoaiTinController extends Controller
 //         echo changeTitle($request->Ten);
     	// echo $request->Ten;
     }
+
+
+    public function UpdatePost(Request $request)
+    {
+		$this->validate($request,
+			[	
+				'txtName' => 'required|min:1|max:100',
+				'cmbTheLoai' => 'required',
+			], 
+			[
+				'txtTen.required' =>'Bạn chưa nhập tên Loại Tin',				
+// 				'txtTen.unique' =>'Tên Loại Tin đã tồn tại',	
+				'txtTen.min'=>'Tên Thể Loại phải có độ dài từ 3 cho đến 100 ký tự',
+				'txtTen.max'=>'Tên Thể Loại phải có độ dài từ 3 cho đến 100 ký tự',
+				'cmbTheLoai.required' => 'Bạn chưa chọn Thể Loại',
+			]
+		);
+
+
+
+		$loaitin = LoaiTin::find($request->id);
+		$loaitin->Ten = $request->txtName;
+		$loaitin->TenKhongDau = changeTitle($request->txtName); // dùng thư viện bên ngoài
+		$loaitin->idTheLoai = $request->cmbTheLoai;
+
+		$loaitin->save();
+
+		return redirect('admin/loaitin/sua' . $request->id)->with('thongbao', 'Sửa Thành Công!');
+
+		
+    }
+
+
+    public function Update($id)
+    {
+    	$theloai = TheLoai::all();
+    	$loaitin  = LoaiTin::find($id);
+
+    	return view('admin.loaitin.sua', ['loaitin' => $loaitin, 'theloai' => $theloai]);
+    }
 }
