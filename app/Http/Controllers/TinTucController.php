@@ -30,7 +30,7 @@ class TinTucController extends Controller
     	$this->validate($request, 
     		[
     			'cmbLoaiTin' => 'required',
-    			'txtTieuDe' => 'required|min:3|unique:TinTuc, TieuDe',
+    			'txtTieuDe' => 'required|min:3',
     			'txtTomTat' => 'required',
     			'txtNoiDung' => 'required'
     		],
@@ -39,10 +39,53 @@ class TinTucController extends Controller
     			'cmbLoaiTin.required' => 'bạn chưa chọn loai tin',
     			'txtTieuDe.required' => 'Bạn chưa nhập tiêu đề',
     			'txtTieuDe.min' => 'Tiêu để có ít nhất 3 ký tự',
-    			'txtTieuDe.unique' => 'Tiêu Để đã tồn tại',
+    			// 'txtTieuDe.unique' => 'Tiêu Để đã tồn tại',
     			'txtTomTat.required' => 'Bạn chưa nhập tóm tắt',
     			'txtNoiDung.required' => 'Bạn chưa nhập nội dung!'
-    		]
-    	)
+    		]);
+
+
+    	$tintuc = new TinTuc;
+    	$tintuc->TieuDe = $request->txtTieuDe;
+    	$tintuc->TieuDeKhongDau = changeTitle($request->txtTieuDe);
+    	$tintuc->idLoaiTin = $request->cmbLoaiTin;
+    	$tintuc->TomTat = $request->txtTomTat;
+    	$tintuc->NoiDung = $request->txtNoiDung;
+    	$tintuc->SoLuotXem = 0;
+
+    	if ($request->hasFile('Hinh'))
+    	{
+    		$file = $request->file('Hinh');
+
+    		// cho phep upload với duoi cho phép
+    		$duoi = $file->getClientOriginalExtension();
+
+    		if ($duoi != 'jpg' && $duoi != "png") 
+    		{
+    			return redirect('admin/tintuc/them')->with('thongbao', 'just accept png or jpg');
+    		}
+
+    		// truong hop hinh tồn tại tên
+    		$name = $file->getClientOriginalName();
+    		$Hinh = str_random(4) . "_" . $name;
+
+    		// echo $Hinh;
+
+			while (file_exists("upload/tintuc/" . $Hinh))
+			{
+				$Hinh = str_random(4) . "_" . $name;
+			}
+
+			$file->move('upload/tintuc', $Hinh);	// lưu hình
+			$tintuc->Hinh  = $Hinh;
+    	}
+    	else
+    	{
+    		$tintuc->Hinh = "";
+    	}
+
+    	$tintuc->save();
+
+    	return redirect('admin/tintuc/them')->with('thongbao', 'Add News succeefully!');
     }
 }

@@ -40,7 +40,7 @@
 
 
 
-                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" />
 
                     <div class="form-group">
                         <label>Thể Loại</label>
@@ -76,7 +76,7 @@
 
                     <div class="form-group">
                         <label>Tóm Tắt</label>
-                        <textarea id="TomTat" ame="txtTomTat"  rows="5" class="form-control ckeditor"></textarea>    
+                        <textarea id="TomTat" name="txtTomTat"  rows="5" class="form-control ckeditor"></textarea>    
                     </div>
 
                     <div class="form-group">
